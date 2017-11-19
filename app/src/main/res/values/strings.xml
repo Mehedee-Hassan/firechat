@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Wechat</string>
+    <string name="auth_failed">cannot be registered</string>
+    <string name="register_succed">Account created</string>
+    <string name="log_out">Log Out</string>
+    <string name="create_accout">Create Accout</string>
+</resources>

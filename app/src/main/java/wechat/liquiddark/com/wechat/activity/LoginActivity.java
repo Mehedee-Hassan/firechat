@@ -1,5 +1,6 @@
 package wechat.liquiddark.com.wechat.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.TextViewCompat;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private static final String TAG = "LoginActivity";
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = (EditText) findViewById(R.id.logact_log_passwordtv);
         etEmail = (EditText) findViewById(R.id.logact_log_email);
         loginBtn = (Button) findViewById(R.id.loginact_login_button);
+        mProgressDialog = new ProgressDialog(this);
 
 
 
@@ -50,6 +53,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 String password = etPassword.getText().toString();
                 String email = etEmail.getText().toString();
+
+                mProgressDialog.setTitle("Logging in");
+                mProgressDialog.setMessage("Please wait...");
+                mProgressDialog.setCanceledOnTouchOutside(false);
+                mProgressDialog.show();
 
                 login(password,email);
             }
@@ -84,14 +92,17 @@ public class LoginActivity extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "Log in with email failed", task.getException());
 
-
+                            mProgressDialog.dismiss();
                             Toast.makeText(LoginActivity.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
 
 
                         }else{
+                            mProgressDialog.hide();
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
+
                             finish();
+
                         }
 
                     }

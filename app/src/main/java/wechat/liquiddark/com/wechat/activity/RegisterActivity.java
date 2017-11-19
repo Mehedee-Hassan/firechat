@@ -106,6 +106,8 @@ public class RegisterActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
                             startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+                            finish();
+
 
                         }
 

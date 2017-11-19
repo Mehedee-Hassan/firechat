@@ -48,7 +48,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent regintent = new Intent(StartActivity.this,LoginActivity.class);
                 startActivity(regintent);
-
+                finish();
             }
         });
 

@@ -99,8 +99,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         }else{
                             mProgressDialog.hide();
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
+
+                            Intent loginSuccessIntent = new Intent(LoginActivity.this,MainActivity.class);
+                            loginSuccessIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(loginSuccessIntent);
                             finish();
 
                         }

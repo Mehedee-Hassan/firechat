@@ -1,16 +1,10 @@
 package wechat.liquiddark.com.wechat.util;
 
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-
-import wechat.liquiddark.com.wechat.R;
 
 /**
  * Created by mhr on 19-Nov-17.
@@ -51,6 +45,33 @@ public class ViewFormatter {
             }
 
         }
+    }
+
+
+
+
+
+    public Typeface setFontCasualBold(Context context){
+
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/casual.ttf");
+        return tf;
+    }
+
+    public Typeface setFontAvro(Context context){
+
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/arvoregular.ttf");
+        return tf;
+    }
+
+    public Typeface setFontAcme(Context context){
+
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/acmeregular.ttf");
+        return tf;
+    }
+    public Typeface setFontJosefinsans(Context context){
+
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/josefinsansregular.ttf");
+        return tf;
     }
 
 

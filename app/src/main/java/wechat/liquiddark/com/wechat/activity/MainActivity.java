@@ -2,6 +2,8 @@ package wechat.liquiddark.com.wechat.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     Toolbar mainToolbar ;
     ViewFormatter viewFormatter;
+    private ViewPager chatPager;
+    private SelectionsPagerAdapter mSelectionPager;
+    private TabLayout mTablayout;
 
 
     @Override
@@ -34,20 +39,20 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "on create");
 
         mAuth = FirebaseAuth.getInstance();
-        gotoReg  = (Button) findViewById(R.id.gotoRegActBtn);
 
         viewFormatter = new ViewFormatter();
         viewFormatter.toolbarAdder(mainToolbar,this,R.id.main_app_bar);
 
-        gotoReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,StartActivity.class));
-            }
-        });
+        chatPager = (ViewPager) findViewById(R.id.main_act_view_pager);
+        mSelectionPager = new SelectionsPagerAdapter(getSupportFragmentManager());
+        chatPager.setAdapter(mSelectionPager);
 
-//        setTaskBarColored(this);
-        authenticateFireb();
+        mTablayout = (TabLayout) findViewById(R.id.main_act_tab_lo_id);
+        mTablayout.setupWithViewPager(chatPager);
+
+
+
+         authenticateFireb();
     }
 
     private void authenticateFireb() {
@@ -65,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
+
+
+
 
     @Override
     public void onStart() {
